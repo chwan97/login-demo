@@ -2,19 +2,37 @@
   "name": "login-demo",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ],
+  "author": {
+    "name": "chwan",
+    "email": "mail@chwan.cc"
+  },
+  "homepage": "https://github.com/chwan97/login-demo",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_ENV=production next build && next export",
+    "buildForChwan": "IS_CHWAN=yes next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "joi": "^17.6.0",
+    "mobx": "^6.6.2",
+    "mobx-react": "^7.5.3",
     "next": "12.3.0",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.23.1",
-    "eslint-config-next": "12.3.0"
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.3.0",
+    "eslint-config-prettier": "^8.5.0"
   }
 }

@@ -1,7 +1,8 @@
-import '../styles/globals.css'
+import 'app/styles/globals.css'
+import 'normalize.css'
 
-function MyApp({ Component, pageProps }) {
+function LoginApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default LoginApp
