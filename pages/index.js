@@ -12,7 +12,6 @@ import ErrorTips from 'app/components/ErrorTips'
 import { LOGIN_STEP } from 'app/constants'
 import iphone_tx from 'public/iphone_tx.png'
 import iPhone_banner from 'public/iPhone_banner.png'
-import favicon from 'public/favicon.ico'
 import styles from 'app/styles/Login.module.css'
 
 function Index() {
@@ -42,7 +41,7 @@ function Index() {
     <div className={styles.main}>
       <Head>
         <title>登录</title>
-        <link rel="icon" src={favicon} />
+        <link rel="icon" src="/favicon.ico" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"

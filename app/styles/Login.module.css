@@ -1,17 +1,17 @@
 .main {
   position: relative;
-  max-width: 1400px;
-  margin: 0 auto;
   height: 100%;
+  width: 100%;
+  margin: 0;
   min-height: 640px;
+  text-align: center;
 }
 
 .container {
-  max-width: 1400px;
   margin: 0 auto;
   height: 100%;
   min-height: 640px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 
@@ -146,8 +146,10 @@
     display: inline-block;
     position: fixed;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     top: unset;
-    width: 100%;
+    width: 375px;
   }
 
   .brandName {
@@ -164,7 +166,7 @@
   }
 }
 
-@media (max-height: 654px) {
+@media (max-height: 654px) and (max-width: 768px) {
   .banner {
     display: none !important;
   }
