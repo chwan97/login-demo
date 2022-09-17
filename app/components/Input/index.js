@@ -7,7 +7,7 @@ import iphone_password from 'public/iphone_password.png'
 import styles from './styles.module.css'
 
 function Input(props) {
-  const { type, iconSrc, value, onChange, hasError, onBlur, placeholderText } = props
+  const { type, iconSrc, value, placeholderText, hasError, onBlur, onChange } = props
   const [focusing, setFocusing] = useState(false)
 
   return (

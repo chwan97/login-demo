@@ -8,12 +8,12 @@ import Button from 'app/components/Button'
 import Avatar from 'app/components/Avatar'
 import Tooltips from 'app/components/Tooltips'
 import { PasswordInput, EmailInput, MFAInput } from 'app/components/Input'
+import ErrorTips from 'app/components/ErrorTips'
+import { LOGIN_STEP } from 'app/constants'
 import iphone_tx from 'public/iphone_tx.png'
 import iPhone_banner from 'public/iPhone_banner.png'
 import favicon from 'public/favicon.ico'
 import styles from 'app/styles/Login.module.css'
-import { LOGIN_STEP } from '../app/constants'
-import ErrorTips from '../app/components/ErrorTips'
 
 function Index() {
   const loginStore = useLocalObservable(() => new LoginStore())
