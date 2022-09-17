@@ -6,8 +6,11 @@ import { setAuthToken } from 'app/utills'
 import { loginByUserNameAndPassword, loginWithMFA } from 'app/api'
 
 class LoginStore {
-  step = LOGIN_STEP.STEP_1
-  name = ''
+  step = LOGIN_STEP.STEP_2
+
+  email = ''
+
+  password = ''
 
   constructor() {
     makeAutoObservable(this)
@@ -19,6 +22,8 @@ class LoginStore {
   }
 
   login = async () => {
+    this.step = LOGIN_STEP.STEP_2
+    return
     const { success, data } = await loginByUserNameAndPassword({
       username: 'user09',
       password: 'OpenSesame',
@@ -27,10 +32,12 @@ class LoginStore {
     console.log(data)
     if (success) {
       setAuthToken(data.token)
+      this.step = LOGIN_STEP.STEP_2
     }
   }
 
   loginMFA = async () => {
+    return
     await loginWithMFA({
       tfa: '123456',
     })

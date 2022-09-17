@@ -1,0 +1,51 @@
+.textInputWrapper {
+  height: 40px;
+  padding: 4px 11px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #D0D3D6;
+  border-radius: 6px;
+  transition: all .3s;
+  display: inline-flex;
+  align-items: center;
+
+}
+
+.textInputWrapper.error {
+  border: 1px solid #FA5757;;
+}
+
+.textInputWrapper.focusing {
+  border: 1px solid #3371FF;
+}
+
+.icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  user-select: none;
+  margin-right: 13px;
+}
+
+.textInput {
+  font-size: 16px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+
+}
+
+.textInput:focus {
+  box-shadow: none !important;
+}

@@ -1,0 +1,68 @@
+.button {
+  color: #FFF;
+  background-color: #3371FF;
+  border: #3371FF;
+  outline: 0;
+  width: 320px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button:active {
+  background-color: #0A4FF5;
+  border: #0A4FF5;
+}
+
+.button.disable, .button.disable:active {
+  background-color: #BBBFC4;
+  border: #BBBFC4;
+  cursor: not-allowed;
+}
+
+.button.loading, .button.loading:active {
+  background-color: #698AF8;
+  border: #698AF8;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .button {
+    margin: auto;
+    width: 305px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 3px;
+  }
+}
+
+.spin {
+  display: inline-block;
+  margin-right: 8px;
+  animation: spinner 1s linear infinite;
+}
+
+.button :global(svg) {
+  width: 1em;
+  height: 1em;
+  fill: currentcolor;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}

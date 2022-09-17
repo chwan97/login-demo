@@ -16,11 +16,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "NODE_ENV=production next build && next export",
-    "buildForChwan": "IS_CHWAN=yes next build && next export",
+    "buildForChwan": "NEXT_PUBLIC_IS_CHWAN=yes next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "joi": "^17.6.0",
     "mobx": "^6.6.2",
     "mobx-react": "^7.5.3",

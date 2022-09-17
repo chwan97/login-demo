@@ -34,6 +34,12 @@ export async function post(url, param = {}, additionalOpt) {
     fetchParam = additionalOpt(fetchParam)
   }
 
+  // 特殊处理：服务器转发解决跨域问题
+  if (process.env.NEXT_PUBLIC_IS_CHWAN === 'yes') {
+    url = url.replace('/api', 'https://thawing-refuge-28685.herokuapp.com/https://gateway.lizhi.io')
+    delete fetchParam.credentials
+  }
+
   try {
     const response = await fetch(url, fetchParam)
     const data = await response.json()

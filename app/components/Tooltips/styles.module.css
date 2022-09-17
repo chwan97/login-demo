@@ -1,0 +1,22 @@
+.tooltips {
+  font-size: 14px;
+  color: #FC6161;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .tooltips {
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    background: #FC6161;
+    box-shadow: 0 0 7px 0 rgba(133, 137, 143, 0.40);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+  }
+}

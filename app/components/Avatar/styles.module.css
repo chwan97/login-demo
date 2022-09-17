@@ -1,0 +1,13 @@
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 200px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    width: 84px;
+    height: 84px;
+  }
+}

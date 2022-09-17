@@ -2,17 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    unoptimized: true,
+  },
   async rewrites() {
-    console.log('Rewrites called')
-    if (process.env.IS_CHWAN === 'yes') {
-      return [
-        {
-          source: '/api/:path*',
-          destination: 'https://gateway.lizhi.io/:path*',
-        },
-      ]
-    }
-
     if (process.env.NODE_ENV === 'production') {
       return []
     }
