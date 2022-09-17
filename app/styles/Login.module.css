@@ -1,7 +1,17 @@
-.container {
+.main {
+  position: relative;
   max-width: 1400px;
   margin: 0 auto;
-  height: 100vh;
+  height: 100%;
+  min-height: 640px;
+  overflow: hidden;
+}
+
+.container {
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
   min-height: 640px;
   display: flex;
   align-items: center;
@@ -11,7 +21,8 @@
   user-select: none;
   width: 872px;
   position: relative;
-  top: -42px
+  top: -42px;
+  flex-shrink: 0;
 }
 
 .banner img {
@@ -50,6 +61,7 @@
 
 .tips {
   margin-top: 24px;
+  text-align: center;
 }
 
 .otherWayWrapper {
@@ -76,4 +88,64 @@
 .avatarWrapper {
   text-align: center;
   margin-bottom: 24px;
+}
+
+.titleForMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .titleForMobile {
+    margin-top: 20px;
+    display: block;
+    font-size: 18px;
+    color: #333333;
+    letter-spacing: 0;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .main {
+    min-height: unset;
+  }
+
+  .container {
+    min-height: unset;
+  }
+
+  .container {
+    display: block;
+    min-height: unset;
+  }
+
+  .formWrapper {
+    margin: 63px auto 0;
+    box-sizing: border-box;
+
+    width: 345px;
+    height: 400px;
+    padding: 30px 20px;
+    position: relative;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(187, 191, 196, 0.30);
+    border-radius: 12px;
+  }
+
+  .banner {
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+    top: unset;
+    width: 100%;
+  }
+
+  .brandName {
+    font-size: 24px;
+  }
+
+  .otherWayWrapper {
+    bottom: 18px;
+    padding-top: 16px;
+  }
 }

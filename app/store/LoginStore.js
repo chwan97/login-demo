@@ -3,10 +3,10 @@ import { makeAutoObservable } from 'mobx'
 import { LOGIN_STEP } from 'app/constants'
 import { setAuthToken } from 'app/utills/fetch'
 import { loginByUserNameAndPassword, loginWithMFA } from 'app/api'
-import { validateFn } from '../utills/validate'
+import { validateFn } from 'app/utills/validate'
 
 class LoginStore {
-  step = LOGIN_STEP.STEP_2
+  step = LOGIN_STEP.STEP_1
 
   email = ''
 
@@ -34,7 +34,6 @@ class LoginStore {
     if (!emailValidateState || !ValidateState) {
       return
     }
-    return
     const { success, data } = await loginByUserNameAndPassword({
       username: this.email,
       password: this.password,
@@ -54,13 +53,12 @@ class LoginStore {
     if (!MfACodeValidateState) {
       return
     }
-    return
+
     const { success, data } = await loginWithMFA({
       tfa: this.MfACode,
     })
     if (success) {
-      setAuthToken(data.token)
-      this.step = LOGIN_STEP.STEP_2
+      window.location = 'https://www.lizhi.io'
     } else {
       this.hasMFAError = true
     }
@@ -69,12 +67,6 @@ class LoginStore {
   validate = (...keys) => {
     for (const key of keys) {
       this.validateState[key] = validateFn(key, this[key])
-      console.log(
-        this.validateState[key],
-        key,
-        this[key],
-        'this.validateState[key], key, this[key]'
-      )
     }
     this.validateState = {
       ...this.validateState,
@@ -83,14 +75,17 @@ class LoginStore {
 
   setPassword = event => {
     this.password = event.target.value
+    this.hasLoginError = false
   }
 
   setEmail = event => {
     this.email = event.target.value
+    this.hasLoginError = false
   }
 
   setMfACode = event => {
     this.MfACode = event.target.value
+    this.hasMFAError = false
   }
 }
 

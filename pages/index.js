@@ -23,6 +23,8 @@ function Index() {
     password,
     MfACode,
     validateState,
+    hasLoginError,
+    hasMFAError,
     validate,
     login,
     verifyMFACode,
@@ -37,7 +39,7 @@ function Index() {
   } = validateState
 
   return (
-    <div className={styles.container}>
+    <div className={styles.main}>
       <Head>
         <title>登录</title>
         <link rel="icon" src={favicon} />
@@ -47,6 +49,7 @@ function Index() {
         />
       </Head>
       <div className={styles.container}>
+        <div className={styles.titleForMobile}>登录</div>
         <div className={styles.banner}>
           <Image src={iPhone_banner} />
         </div>
@@ -78,10 +81,14 @@ function Index() {
               <ErrorTips text={'密码格式错误，请重新输入'} show={!passwordValidateState} />
             </div>
             <div className={styles.field}>
-              <Button text="下一步" onClick={login} />
+              <Button
+                text="下一步"
+                onClick={login}
+                disable={password.length === 0 || email.length === 0}
+              />
             </div>
             <div className={styles.tips}>
-              <Tooltips text="密码错误或邮箱与对应的密码不相符" />
+              {hasLoginError && <Tooltips text="密码错误或邮箱与对应的密码不相符" />}
             </div>
             <div className={styles.otherWayWrapper}>
               <div className={styles.otherWayBtn}>其他方式登录</div>
@@ -103,12 +110,12 @@ function Index() {
                   validate('MfACode')
                 }}
               />
-              <span clas></span>
               <ErrorTips text={'二步验证码格式错误，请重新输入'} show={!MfACodeValidateState} />
             </div>
             <div className={styles.field}>
-              <Button text="确定" onClick={verifyMFACode} />
+              <Button text="确定" disable={MfACode.length === 0} onClick={verifyMFACode} />
             </div>
+            <div className={styles.tips}>{hasMFAError && <Tooltips text="二步验证码错误" />}</div>
           </div>
         </div>
       </div>

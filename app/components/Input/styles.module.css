@@ -49,3 +49,9 @@
 .textInput:focus {
   box-shadow: none !important;
 }
+
+@media (max-width: 768px) {
+  .textInputWrapper {
+    height: 44px;
+  }
+}
