@@ -1,0 +1,12 @@
+.errorTips {
+  font-size: 12px;
+  line-height: 17px;
+  color: #FB797A;
+  font-weight: 400;
+  display: none;
+  margin-top: 8px;
+}
+
+.show {
+  display: inline-block;
+}

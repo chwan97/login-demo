@@ -10,18 +10,37 @@ import Tooltips from 'app/components/Tooltips'
 import { PasswordInput, EmailInput, MFAInput } from 'app/components/Input'
 import iphone_tx from 'public/iphone_tx.png'
 import iPhone_banner from 'public/iPhone_banner.png'
+import favicon from 'public/favicon.ico'
 import styles from 'app/styles/Login.module.css'
 import { LOGIN_STEP } from '../app/constants'
+import ErrorTips from '../app/components/ErrorTips'
 
 function Index() {
   const loginStore = useLocalObservable(() => new LoginStore())
-  const { step } = loginStore
+  const {
+    step,
+    email,
+    password,
+    MfACode,
+    validateState,
+    validate,
+    login,
+    verifyMFACode,
+    setPassword,
+    setEmail,
+    setMfACode,
+  } = loginStore
+  const {
+    email: emailValidateState,
+    password: passwordValidateState,
+    MfACode: MfACodeValidateState,
+  } = validateState
 
   return (
     <div className={styles.container}>
       <Head>
         <title>登录</title>
-        <link rel="icon" href="/public/favicon.ico" />
+        <link rel="icon" src={favicon} />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -39,13 +58,27 @@ function Index() {
             })}
           >
             <div className={styles.field}>
-              <EmailInput text="密码错误或邮箱与对应的密码不相符" />
+              <EmailInput
+                value={email}
+                onChange={setEmail}
+                onBlur={() => {
+                  validate('email')
+                }}
+              />
+              <ErrorTips text={'邮箱格式错误，请重新输入'} show={!emailValidateState} />
             </div>
             <div className={styles.field}>
-              <PasswordInput text="密码错误或邮箱与对应的密码不相符" />
+              <PasswordInput
+                value={password}
+                onChange={setPassword}
+                onBlur={() => {
+                  validate('password')
+                }}
+              />
+              <ErrorTips text={'密码格式错误，请重新输入'} show={!passwordValidateState} />
             </div>
             <div className={styles.field}>
-              <Button text="下一步" onClick={() => {}} />
+              <Button text="下一步" onClick={login} />
             </div>
             <div className={styles.tips}>
               <Tooltips text="密码错误或邮箱与对应的密码不相符" />
@@ -63,10 +96,18 @@ function Index() {
               <Avatar url={iphone_tx} />
             </div>
             <div className={styles.field}>
-              <MFAInput text="密码错误或邮箱与对应的密码不相符" />
+              <MFAInput
+                value={MfACode}
+                onChange={setMfACode}
+                onBlur={() => {
+                  validate('MfACode')
+                }}
+              />
+              <span clas></span>
+              <ErrorTips text={'二步验证码格式错误，请重新输入'} show={!MfACodeValidateState} />
             </div>
             <div className={styles.field}>
-              <Button text="确定" onClick={() => {}} />
+              <Button text="确定" onClick={verifyMFACode} />
             </div>
           </div>
         </div>
@@ -76,38 +117,3 @@ function Index() {
 }
 
 export default observer(Index)
-
-// <div>
-// 账号：
-//         <input type="text" value={loginStore.name} onChange={loginStore.setName} />
-// </div>
-// <div>
-//   密码：
-//   <input type="text" />
-// </div>
-// <button
-//   onClick={() => {
-//     console.log('loginStore.name', loginStore.name)
-//     validate()
-//   }}
-// >
-//   登录
-// </button>
-// <Button text="下一步" onClick={() => {}} />
-// <Button
-//   text="下一步4"
-//   onClick={async () => {
-//     await new Promise(resolve => {
-//       window.setTimeout(() => {
-//         resolve()
-//       }, 300000)
-//     })
-//   }}
-// />
-// <Button text="测试2" disable onClick={() => {}} />
-// <Button text="测试" onClick={loginStore.login} />
-// <Button text="测试2" onClick={loginStore.loginMFA} />
-// <Avatar url={iphone_tx} />
-// <Tooltips text="密码错误或邮箱与对应的密码不相符" />
-// <TextInput text="密码错误或邮箱与对应的密码不相符" />
-// <TextInput text="密码错误或邮箱与对应的密码不相符" hasError />

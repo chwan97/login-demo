@@ -23,6 +23,8 @@ function Input(props) {
       <input
         type={type}
         className={styles.textInput}
+        value={value}
+        onChange={onChange}
         onFocus={() => {
           setFocusing(true)
         }}

@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx'
-import Joi from 'joi'
 
 import { LOGIN_STEP } from 'app/constants'
-import { setAuthToken } from 'app/utills'
+import { setAuthToken } from 'app/utills/fetch'
 import { loginByUserNameAndPassword, loginWithMFA } from 'app/api'
+import { validateFn } from '../utills/validate'
 
 class LoginStore {
   step = LOGIN_STEP.STEP_2
@@ -12,44 +12,85 @@ class LoginStore {
 
   password = ''
 
+  MfACode = ''
+
+  hasLoginError = false
+
+  hasMFAError = false
+
+  validateState = {
+    email: true,
+    password: true,
+    MfACode: true,
+  }
+
   constructor() {
     makeAutoObservable(this)
   }
 
-  setName = event => {
-    console.log(event)
-    this.name = event.target.value
-  }
-
   login = async () => {
-    this.step = LOGIN_STEP.STEP_2
+    this.validate('email', 'password')
+    const { email: emailValidateState, password: ValidateState } = this.validateState
+    if (!emailValidateState || !ValidateState) {
+      return
+    }
     return
     const { success, data } = await loginByUserNameAndPassword({
-      username: 'user09',
-      password: 'OpenSesame',
+      username: this.email,
+      password: this.password,
     })
 
-    console.log(data)
     if (success) {
       setAuthToken(data.token)
       this.step = LOGIN_STEP.STEP_2
+    } else {
+      this.hasLoginError = true
     }
   }
 
-  loginMFA = async () => {
+  verifyMFACode = async () => {
+    this.validate('MfACode')
+    const { MfACode: MfACodeValidateState } = this.validateState
+    if (!MfACodeValidateState) {
+      return
+    }
     return
-    await loginWithMFA({
-      tfa: '123456',
+    const { success, data } = await loginWithMFA({
+      tfa: this.MfACode,
     })
+    if (success) {
+      setAuthToken(data.token)
+      this.step = LOGIN_STEP.STEP_2
+    } else {
+      this.hasMFAError = true
+    }
   }
 
-  validate = () => {
-    const schema = Joi.object({
-      username: Joi.string().alphanum().min(3).max(30).required(),
-      birth_year3: Joi.string().alphanum().min(3).max(30).required(),
-    })
+  validate = (...keys) => {
+    for (const key of keys) {
+      this.validateState[key] = validateFn(key, this[key])
+      console.log(
+        this.validateState[key],
+        key,
+        this[key],
+        'this.validateState[key], key, this[key]'
+      )
+    }
+    this.validateState = {
+      ...this.validateState,
+    }
+  }
 
-    console.log(schema.validate({ username: 'bc', birth_year: 1994 }))
+  setPassword = event => {
+    this.password = event.target.value
+  }
+
+  setEmail = event => {
+    this.email = event.target.value
+  }
+
+  setMfACode = event => {
+    this.MfACode = event.target.value
   }
 }
 

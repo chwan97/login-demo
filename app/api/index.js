@@ -1,4 +1,4 @@
-import { post } from 'app/utills'
+import { post } from 'app/utills/fetch'
 
 async function loginByUserNameAndPassword(param) {
   return post('/api/demo/login.php?phase=1', param)
