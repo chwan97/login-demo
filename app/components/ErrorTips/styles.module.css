@@ -10,3 +10,9 @@
 .show {
   display: inline-block;
 }
+
+@media (max-width: 768px) {
+  .errorTips {
+    margin-top: 10px;
+  }
+}

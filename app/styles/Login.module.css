@@ -4,11 +4,9 @@
   margin: 0 auto;
   height: 100%;
   min-height: 640px;
-  overflow: hidden;
 }
 
 .container {
-  overflow: hidden;
   max-width: 1400px;
   margin: 0 auto;
   height: 100%;
@@ -56,7 +54,7 @@
 }
 
 .field {
-  margin-top: 20px;
+  margin-top: 14px;
 }
 
 .tips {
@@ -94,10 +92,16 @@
   display: none;
 }
 
+.jumpTips {
+  text-align: center;
+  margin-top: 220px;
+  font-size: 20px;
+}
+
 @media (max-width: 768px) {
   .titleForMobile {
-    margin-top: 20px;
     display: block;
+    margin-top: 32px;
     font-size: 18px;
     color: #333333;
     letter-spacing: 0;
@@ -107,10 +111,12 @@
 
   .main {
     min-height: unset;
+    overflow: hidden;
   }
 
   .container {
     min-height: unset;
+    overflow: hidden;
   }
 
   .container {
@@ -132,6 +138,10 @@
     border-radius: 12px;
   }
 
+  .MFAForm {
+    margin-top: 40px;
+  }
+
   .banner {
     display: inline-block;
     position: fixed;
@@ -147,5 +157,15 @@
   .otherWayWrapper {
     bottom: 18px;
     padding-top: 16px;
+  }
+
+  .tips {
+    margin-top: 32px;
+  }
+}
+
+@media (max-height: 654px) {
+  .banner {
+    display: none !important;
   }
 }

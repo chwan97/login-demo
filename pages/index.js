@@ -117,6 +117,15 @@ function Index() {
             </div>
             <div className={styles.tips}>{hasMFAError && <Tooltips text="二步验证码错误" />}</div>
           </div>
+          <div
+            className={classNames(styles.jumpTips, {
+              [styles.hidden]: step !== LOGIN_STEP.STEP_3,
+            })}
+          >
+            登录成功，跳转中... <br />
+            <br />
+            <a href="https://www.lizhi.io">手动跳转</a>
+          </div>
         </div>
       </div>
     </div>

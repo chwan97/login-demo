@@ -16,6 +16,8 @@ const keyToRule = {
 }
 
 export function validateFn(filedKey, value) {
+  if (value.length === 0) return true
+
   const rule = keyToRule[filedKey]()
   try {
     const res = rule.validate(value)

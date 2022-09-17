@@ -31,7 +31,7 @@ class LoginStore {
   login = async () => {
     this.validate('email', 'password')
     const { email: emailValidateState, password: ValidateState } = this.validateState
-    if (!emailValidateState || !ValidateState) {
+    if (!emailValidateState || !ValidateState || !this.email || !this.password) {
       return
     }
     const { success, data } = await loginByUserNameAndPassword({
@@ -50,7 +50,7 @@ class LoginStore {
   verifyMFACode = async () => {
     this.validate('MfACode')
     const { MfACode: MfACodeValidateState } = this.validateState
-    if (!MfACodeValidateState) {
+    if (!MfACodeValidateState || !this.MfACode) {
       return
     }
 
@@ -58,6 +58,7 @@ class LoginStore {
       tfa: this.MfACode,
     })
     if (success) {
+      this.step = LOGIN_STEP.STEP_3
       window.location = 'https://www.lizhi.io'
     } else {
       this.hasMFAError = true
@@ -76,16 +77,19 @@ class LoginStore {
   setPassword = event => {
     this.password = event.target.value
     this.hasLoginError = false
+    this.validateState.password = true
   }
 
   setEmail = event => {
     this.email = event.target.value
     this.hasLoginError = false
+    this.validateState.email = true
   }
 
   setMfACode = event => {
     this.MfACode = event.target.value
     this.hasMFAError = false
+    this.validateState.MfACode = true
   }
 }
 
