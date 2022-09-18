@@ -13,6 +13,7 @@
   min-height: 640px;
   display: inline-flex;
   align-items: center;
+  text-align: left;
 }
 
 .banner {
@@ -41,6 +42,7 @@
 
 .brandName {
   font-size: 28px;
+  line-height: 40px;
   color: #333333;
   font-weight: 500;
 }
@@ -81,6 +83,10 @@
 
 .MFAForm {
   margin-top: 32px;
+}
+
+.MFAForm .otherWayWrapper {
+  display: none;
 }
 
 .avatarWrapper {
@@ -126,16 +132,19 @@
 
   .formWrapper {
     margin: 63px auto 0;
-    box-sizing: border-box;
-
     width: 345px;
     height: 400px;
     padding: 30px 20px;
-    position: relative;
-    flex-shrink: 0;
-    background: #FFFFFF;
-    box-shadow: 0 0 20px 0 rgba(187, 191, 196, 0.30);
-    border-radius: 12px;
+    box-shadow: 0 0 10px 0 rgba(187, 191, 196, 0.30);
+    border-radius: 16px;
+  }
+
+  .formWrapper.stepTwo {
+    height: 430px;
+  }
+
+  .formWrapper.stepTwo .tips {
+    margin-top: 10px;
   }
 
   .MFAForm {
@@ -144,7 +153,7 @@
 
   .banner {
     display: inline-block;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -154,11 +163,16 @@
 
   .brandName {
     font-size: 24px;
+    line-height: 34px;
   }
 
   .otherWayWrapper {
     bottom: 18px;
     padding-top: 16px;
+  }
+
+  .MFAForm .otherWayWrapper {
+    display: block;
   }
 
   .tips {

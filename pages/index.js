@@ -52,7 +52,11 @@ function Index() {
         <div className={styles.banner}>
           <Image src={iPhone_banner} />
         </div>
-        <div className={styles.formWrapper}>
+        <div
+          className={classNames(styles.formWrapper, {
+            [styles.stepTwo]: step === LOGIN_STEP.STEP_2,
+          })}
+        >
           <div className={styles.brandName}>DIGITALYCHEE</div>
           <div
             className={classNames(styles.passwordForm, {
@@ -67,7 +71,7 @@ function Index() {
                   validate('email')
                 }}
               />
-              <ErrorTips text={'邮箱格式错误，请重新输入'} show={!emailValidateState} />
+              <ErrorTips text="邮箱格式错误，请重新输入" show={!emailValidateState} />
             </div>
             <div className={styles.field}>
               <PasswordInput
@@ -77,7 +81,7 @@ function Index() {
                   validate('password')
                 }}
               />
-              <ErrorTips text={'密码格式错误，请重新输入'} show={!passwordValidateState} />
+              <ErrorTips text="密码格式错误，请重新输入" show={!passwordValidateState} />
             </div>
             <div className={styles.field}>
               <Button
@@ -115,6 +119,9 @@ function Index() {
               <Button text="确定" disable={MfACode.length === 0} onClick={verifyMFACode} />
             </div>
             <div className={styles.tips}>{hasMFAError && <Tooltips text="二步验证码错误" />}</div>
+            <div className={styles.otherWayWrapper}>
+              <div className={styles.otherWayBtn}>其他方式登录</div>
+            </div>
           </div>
           <div
             className={classNames(styles.jumpTips, {

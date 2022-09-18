@@ -30,8 +30,8 @@ class LoginStore {
 
   login = async () => {
     this.validate('email', 'password')
-    const { email: emailValidateState, password: ValidateState } = this.validateState
-    if (!emailValidateState || !ValidateState || !this.email || !this.password) {
+    const { email: emailValidateState, password: passwordValidateState } = this.validateState
+    if (!emailValidateState || !passwordValidateState || !this.email || !this.password) {
       return
     }
     const { success, data } = await loginByUserNameAndPassword({
